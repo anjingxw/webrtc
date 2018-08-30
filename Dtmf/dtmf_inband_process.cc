@@ -22,7 +22,15 @@ void DtmfInbandProcess::Initialize(int sample_rate_hz, int num_channels){
     }
 };
 
+void DtmfInbandProcess::Set(OutAudioBuffer* out){
+    outAudioBuffer = out;
+}
+
 void DtmfInbandProcess::Process(webrtc::AudioBuffer* audio){
+    if (outAudioBuffer != nullptr) {
+        outAudioBuffer->SaveRecordAudioBuffer(sample_rate_hz_, audio);
+    }
+    
     if (_inbandDtmfQueue.PendingDtmf() &&
         !_inbandDtmfGenerator.IsAddingTone() &&
         _inbandDtmfGenerator.DelaySinceLastTone() > kMinTelephoneEventSeparationMs)
@@ -59,6 +67,23 @@ void DtmfInbandProcess::Process(webrtc::AudioBuffer* audio){
         // Add 10ms to "delay-since-last-tone" counter
         _inbandDtmfGenerator.UpdateDelaySinceLastTone();
     }
+#ifdef HAS_TABCALL
+    if (_wavReader && _wavReader->hasData()) {
+        int16_t toneBuffer[320];
+        uint16_t toneSamples(0);
+        _wavReader->Get10msTone(toneBuffer, toneSamples);
+        for (size_t sample = 0; sample < (size_t)audio->num_frames(); sample++){
+            for (size_t channel = 0; channel < audio->num_channels();
+                 channel++)
+            {
+                audio->channels()[channel][sample] = toneBuffer[sample];
+            }
+        }
+    }
+    else{
+        _wavReader.reset();
+    }
+#endif
 };
 
 void DtmfInbandProcess::SendTelephoneEventInband(unsigned char eventCode, int lengthMs, int attenuationDb)
@@ -68,3 +93,18 @@ void DtmfInbandProcess::SendTelephoneEventInband(unsigned char eventCode, int le
 std::string DtmfInbandProcess::ToString() const{
     return "DtmfInbandProcess";
 };
+
+#ifdef HAS_TABCALL
+bool DtmfInbandProcess::PlayWav(const char* file){
+    if(_wavReader){
+        return false;
+    }
+    
+    _wavReader.reset(new WavReader(file, sample_rate_hz_, num_channels_));
+    return true;
+}
+bool DtmfInbandProcess::StopPlayWav(){
+    _wavReader.reset(NULL);
+    return true;
+}
+#endif

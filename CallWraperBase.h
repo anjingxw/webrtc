@@ -35,7 +35,15 @@ public:
     virtual bool SetInputMute(bool mute) = 0;
     virtual int  GetSoundQuality() = 0;
     virtual ~CallWraperBase(){};
-    
+public:
+#ifdef HAS_TABCALL
+    virtual bool AddTabToOther(const char* ip, uint16_t port) = 0;
+    virtual bool RemoveTabToOther(const char* ip, uint16_t port) = 0;
+    virtual bool PlayWav(const char* file_path){return false;};
+    virtual bool StopPlayWav(){return false;};
+    virtual bool Record2File(const char* local, const char* net,  const char* mix){return false;};
+    virtual bool StopRecord2File(){return false;};
+#endif
 };
 
 extern "C" __attribute__((visibility("default"))) CallWraperBase *GetCallWraperBase(bool ipv6);

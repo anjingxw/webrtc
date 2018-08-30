@@ -99,7 +99,14 @@ void WebrtcUdpTransport::OnReadPacket(rtc::CopyOnWriteBuffer* packet,  const rtc
     if (type_ == kAudio && infobirdTransport_) {
         uint8_t* data = packet->data();
         size_t  len = packet->size();
-        if (len != (72-8)) {
+        if (len != (72-8)&&audioPlayload_== 18) {
+            return;
+        }
+        if (audioPlayload_== 8 && len != 484) {
+            return;
+        }
+        
+        if (audioPlayload_== 102 && len != 56) {
             return;
         }
         
@@ -169,7 +176,7 @@ size_t  WebrtcUdpTransport::PreSendProcess(bool isRtp, uint8_t* rtpData, size_t 
     
 //     __android_log_print(ANDROID_LOG_ERROR, "MicroMsg***8", "send payload_type = %f, rtpDataLen = %f \n", head.payload_type+0.0, rtpDataLen+0.0 );
     
-    if (head.payload_type == 18) { //g729
+    if (head.payload_type == 18 || head.payload_type == 8) { //g729 g711
         timeStamp = (head.timestamp)/480; // ntohl(head.timestamp)/480;
         sendDataLen = rtpDataLen - (rtpHeadLen-4);
         sendData = rtpData + (rtpHeadLen-4);
@@ -182,6 +189,7 @@ size_t  WebrtcUdpTransport::PreSendProcess(bool isRtp, uint8_t* rtpData, size_t 
         sendDataLen = rtpDataLen - (rtpHeadLen-4);
         sendData = (rtpData + (rtpHeadLen-4));
         *((uint32_t*)sendData) = timeStamp;
+        sendDataLen += 2;
         return sendDataLen;
     }
     else if(head.payload_type ==  103){ //isac
@@ -189,6 +197,7 @@ size_t  WebrtcUdpTransport::PreSendProcess(bool isRtp, uint8_t* rtpData, size_t 
     }
     sendData = rtpData;
     sendDataLen = rtpDataLen;
+    
     return sendDataLen;
 }
 
@@ -205,7 +214,7 @@ size_t WebrtcUdpTransport::PreRecvProcess(bool isRtp, int payloadType, uint8_t* 
     head.ssrc = 12345;
     head.seq_num = seq++;
     
-    if (head.payload_type == 18) { //g729
+    if (head.payload_type == 18 || head.payload_type == 8) { //g729 g711
         head.timestamp = timestamp *480;
     }
     else if(head.payload_type == 102){ //ilbc
@@ -234,6 +243,9 @@ size_t WebrtcUdpTransport::PreRecvProcess(bool isRtp, int payloadType, uint8_t* 
     memcpy(rtpData, rtp_data, 12);
     
     //printf("head.timestamp = %f, head.seq_num = %f \n", head.timestamp+0.0, head.seq_num+0.0 );
+    if (head.payload_type == 102) { //ILBC 老的客户端代码是有问题的，最后多了2个无效字节，所以发送的是54+2个字节。
+        rtpDataLen -= 2;
+    }
     return rtpDataLen;
 }
 

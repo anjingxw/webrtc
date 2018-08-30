@@ -14,7 +14,6 @@
 #include "typedefs.h"
 #include "rtc_base/criticalsection.h"
 
-
 namespace webrtc {
 
 class DtmfInbandQueue

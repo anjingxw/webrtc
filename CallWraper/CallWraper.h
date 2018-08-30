@@ -17,11 +17,12 @@
 #include "media/base/videocapturer.h"
 #include "logging/rtc_event_log/rtc_event_log.h"
 #include "CallWraperPlatform.h"
+#include "TabCallWraper.h"
 
 class WebrtcUdpTransport;
 class DtmfInbandProcess;
 
-class CallWraper:public CallWraperBase, public rtc::VideoSinkInterface<webrtc::VideoFrame>{
+class CallWraper:public CallWraperBase, public rtc::VideoSinkInterface<webrtc::VideoFrame>, public webrtc::AudioSinkInterface{
 public:
     CallWraper(rtc::Thread* work_thread, webrtc::RtcEventLog* event_log,
                rtc::scoped_refptr<webrtc::AudioDecoderFactory> decoder_factory,
@@ -119,6 +120,21 @@ private:
     
     int __GetPayload();
     webrtc::SdpAudioFormat __GetSdpAudioFormat();
+    
+private:
+    //const char* ip, uint16_t port
+    void OnData(const webrtc::AudioSinkInterface::Data& audio) override;
+#ifdef HAS_TABCALL
+    bool AddTabToOther(const char* ip, uint16_t port) override;
+    bool RemoveTabToOther(const char* ip, uint16_t port) override;
+    void StartTabCall();
+    std::unique_ptr<TabCallWraper> tabCall_;  //偷听
+public:
+    bool PlayWav(const char* file_path) override;
+    bool StopPlayWav() override;
+    bool Record2File(const char* local, const char* net,  const char* mix) override;
+    bool StopRecord2File() override;
+#endif
 };
 
 #endif /* CallWraper_hpp */

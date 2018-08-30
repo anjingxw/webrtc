@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		122A55DE20D275A100D0EA42 /* TabCallWraper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 122A55DC20D275A100D0EA42 /* TabCallWraper.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		122A55DF20D275A100D0EA42 /* TabCallWraper.h in Headers */ = {isa = PBXBuildFile; fileRef = 122A55DD20D275A100D0EA42 /* TabCallWraper.h */; };
+		12A8F60820CFAAE900CC203D /* TransportBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5EB20CFAAE900CC203D /* TransportBase.h */; };
+		12A8F60920CFAAE900CC203D /* TransportFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F5EC20CFAAE900CC203D /* TransportFactory.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F60A20CFAAE900CC203D /* TransportFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5ED20CFAAE900CC203D /* TransportFactory.h */; };
+		12A8F60B20CFAAE900CC203D /* UdpTransportProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F5EE20CFAAE900CC203D /* UdpTransportProxy.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F60C20CFAAE900CC203D /* UdpTransportProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5EF20CFAAE900CC203D /* UdpTransportProxy.h */; };
+		12A8F60D20CFAAE900CC203D /* WebrtcUdpTransport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F5F020CFAAE900CC203D /* WebrtcUdpTransport.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F60E20CFAAE900CC203D /* WebrtcUdpTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5F120CFAAE900CC203D /* WebrtcUdpTransport.h */; };
+		12A8F60F20CFAAE900CC203D /* CallWraper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F5F320CFAAE900CC203D /* CallWraper.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F61020CFAAE900CC203D /* CallWraper.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5F420CFAAE900CC203D /* CallWraper.h */; };
+		12A8F61120CFAAE900CC203D /* CallWraperFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F5F520CFAAE900CC203D /* CallWraperFactory.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F61220CFAAE900CC203D /* CallWraperFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5F620CFAAE900CC203D /* CallWraperFactory.h */; };
+		12A8F61320CFAAE900CC203D /* CallWraperPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5F720CFAAE900CC203D /* CallWraperPlatform.h */; };
+		12A8F61520CFAAE900CC203D /* DetectCallWraper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F5F920CFAAE900CC203D /* DetectCallWraper.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F61620CFAAE900CC203D /* DetectCallWraper.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5FA20CFAAE900CC203D /* DetectCallWraper.h */; };
+		12A8F61720CFAAE900CC203D /* dtmf_inband.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F5FC20CFAAE900CC203D /* dtmf_inband.cc */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F61820CFAAE900CC203D /* dtmf_inband.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5FD20CFAAE900CC203D /* dtmf_inband.h */; };
+		12A8F61920CFAAE900CC203D /* dtmf_inband_process.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F5FE20CFAAE900CC203D /* dtmf_inband_process.cc */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F61A20CFAAE900CC203D /* dtmf_inband_process.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F5FF20CFAAE900CC203D /* dtmf_inband_process.h */; };
+		12A8F61B20CFAAE900CC203D /* dtmf_inband_queue.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F60020CFAAE900CC203D /* dtmf_inband_queue.cc */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F61C20CFAAE900CC203D /* dtmf_inband_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F60120CFAAE900CC203D /* dtmf_inband_queue.h */; };
+		12A8F61D20CFAAE900CC203D /* CallWraperBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F60220CFAAE900CC203D /* CallWraperBase.h */; };
+		12A8F61E20CFAAE900CC203D /* ZAudioDecoderFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F60420CFAAE900CC203D /* ZAudioDecoderFactory.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F61F20CFAAE900CC203D /* ZAudioDecoderFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F60520CFAAE900CC203D /* ZAudioDecoderFactory.h */; };
+		12A8F62020CFAAE900CC203D /* ZAudioEncoderFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F60620CFAAE900CC203D /* ZAudioEncoderFactory.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12A8F62120CFAAE900CC203D /* ZAudioEncoderFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 12A8F60720CFAAE900CC203D /* ZAudioEncoderFactory.h */; };
+		12A8F62320CFB90000CC203D /* CallWraperPlatformOsx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 12A8F62220CFB90000CC203D /* CallWraperPlatformOsx.mm */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12AB324320D8A3CA00CC2B4B /* TabUdpTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 12AB324120D8A3CA00CC2B4B /* TabUdpTransport.h */; };
+		12AB324420D8A3CA00CC2B4B /* TabUdpTransport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AB324220D8A3CA00CC2B4B /* TabUdpTransport.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12C7A10620D359F900C117B0 /* TabAudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C7A10420D359F900C117B0 /* TabAudioDevice.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12C7A10720D359F900C117B0 /* TabAudioDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C7A10520D359F900C117B0 /* TabAudioDevice.h */; };
+		12C7A10A20D3641D00C117B0 /* TabCapturer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C7A10820D3641D00C117B0 /* TabCapturer.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12C7A10B20D3641D00C117B0 /* TabCapturer.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C7A10920D3641D00C117B0 /* TabCapturer.h */; };
+		12C94DD720F59CEE00CE9F4A /* WavReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C94DD520F59CEE00CE9F4A /* WavReader.cpp */; };
+		12C94DD820F59CEE00CE9F4A /* WavReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 12C94DD620F59CEE00CE9F4A /* WavReader.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		122A55DC20D275A100D0EA42 /* TabCallWraper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabCallWraper.cpp; sourceTree = "<group>"; };
+		122A55DD20D275A100D0EA42 /* TabCallWraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabCallWraper.h; sourceTree = "<group>"; };
+		12A8F5DE20CFAA4600CC203D /* libwebrtcosx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwebrtcosx.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		12A8F5EB20CFAAE900CC203D /* TransportBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportBase.h; sourceTree = "<group>"; };
+		12A8F5EC20CFAAE900CC203D /* TransportFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransportFactory.cpp; sourceTree = "<group>"; };
+		12A8F5ED20CFAAE900CC203D /* TransportFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportFactory.h; sourceTree = "<group>"; };
+		12A8F5EE20CFAAE900CC203D /* UdpTransportProxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UdpTransportProxy.cpp; sourceTree = "<group>"; };
+		12A8F5EF20CFAAE900CC203D /* UdpTransportProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UdpTransportProxy.h; sourceTree = "<group>"; };
+		12A8F5F020CFAAE900CC203D /* WebrtcUdpTransport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WebrtcUdpTransport.cpp; sourceTree = "<group>"; };
+		12A8F5F120CFAAE900CC203D /* WebrtcUdpTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebrtcUdpTransport.h; sourceTree = "<group>"; };
+		12A8F5F320CFAAE900CC203D /* CallWraper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CallWraper.cpp; sourceTree = "<group>"; };
+		12A8F5F420CFAAE900CC203D /* CallWraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallWraper.h; sourceTree = "<group>"; };
+		12A8F5F520CFAAE900CC203D /* CallWraperFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CallWraperFactory.cpp; sourceTree = "<group>"; };
+		12A8F5F620CFAAE900CC203D /* CallWraperFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallWraperFactory.h; sourceTree = "<group>"; };
+		12A8F5F720CFAAE900CC203D /* CallWraperPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallWraperPlatform.h; sourceTree = "<group>"; };
+		12A8F5F920CFAAE900CC203D /* DetectCallWraper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DetectCallWraper.cpp; sourceTree = "<group>"; };
+		12A8F5FA20CFAAE900CC203D /* DetectCallWraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectCallWraper.h; sourceTree = "<group>"; };
+		12A8F5FC20CFAAE900CC203D /* dtmf_inband.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dtmf_inband.cc; sourceTree = "<group>"; };
+		12A8F5FD20CFAAE900CC203D /* dtmf_inband.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dtmf_inband.h; sourceTree = "<group>"; };
+		12A8F5FE20CFAAE900CC203D /* dtmf_inband_process.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dtmf_inband_process.cc; sourceTree = "<group>"; };
+		12A8F5FF20CFAAE900CC203D /* dtmf_inband_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dtmf_inband_process.h; sourceTree = "<group>"; };
+		12A8F60020CFAAE900CC203D /* dtmf_inband_queue.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dtmf_inband_queue.cc; sourceTree = "<group>"; };
+		12A8F60120CFAAE900CC203D /* dtmf_inband_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dtmf_inband_queue.h; sourceTree = "<group>"; };
+		12A8F60220CFAAE900CC203D /* CallWraperBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallWraperBase.h; sourceTree = "<group>"; };
+		12A8F60420CFAAE900CC203D /* ZAudioDecoderFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZAudioDecoderFactory.cpp; sourceTree = "<group>"; };
+		12A8F60520CFAAE900CC203D /* ZAudioDecoderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAudioDecoderFactory.h; sourceTree = "<group>"; };
+		12A8F60620CFAAE900CC203D /* ZAudioEncoderFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZAudioEncoderFactory.cpp; sourceTree = "<group>"; };
+		12A8F60720CFAAE900CC203D /* ZAudioEncoderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAudioEncoderFactory.h; sourceTree = "<group>"; };
+		12A8F62220CFB90000CC203D /* CallWraperPlatformOsx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CallWraperPlatformOsx.mm; sourceTree = "<group>"; };
+		12AB324120D8A3CA00CC2B4B /* TabUdpTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabUdpTransport.h; sourceTree = "<group>"; };
+		12AB324220D8A3CA00CC2B4B /* TabUdpTransport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabUdpTransport.cpp; sourceTree = "<group>"; };
+		12C7A10420D359F900C117B0 /* TabAudioDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TabAudioDevice.cpp; sourceTree = "<group>"; };
+		12C7A10520D359F900C117B0 /* TabAudioDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabAudioDevice.h; sourceTree = "<group>"; };
+		12C7A10820D3641D00C117B0 /* TabCapturer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TabCapturer.cpp; sourceTree = "<group>"; };
+		12C7A10920D3641D00C117B0 /* TabCapturer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabCapturer.h; sourceTree = "<group>"; };
+		12C94DD520F59CEE00CE9F4A /* WavReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WavReader.cpp; sourceTree = "<group>"; };
+		12C94DD620F59CEE00CE9F4A /* WavReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WavReader.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12A8F5DB20CFAA4600CC203D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		122A55DB20D275A100D0EA42 /* TabCall */ = {
+			isa = PBXGroup;
+			children = (
+				12AB324220D8A3CA00CC2B4B /* TabUdpTransport.cpp */,
+				12AB324120D8A3CA00CC2B4B /* TabUdpTransport.h */,
+				122A55DC20D275A100D0EA42 /* TabCallWraper.cpp */,
+				122A55DD20D275A100D0EA42 /* TabCallWraper.h */,
+				12C7A10420D359F900C117B0 /* TabAudioDevice.cpp */,
+				12C7A10520D359F900C117B0 /* TabAudioDevice.h */,
+				12C7A10820D3641D00C117B0 /* TabCapturer.cpp */,
+				12C7A10920D3641D00C117B0 /* TabCapturer.h */,
+				12C94DD520F59CEE00CE9F4A /* WavReader.cpp */,
+				12C94DD620F59CEE00CE9F4A /* WavReader.h */,
+			);
+			path = TabCall;
+			sourceTree = "<group>";
+		};
+		12A8F5D520CFAA4600CC203D = {
+			isa = PBXGroup;
+			children = (
+				12A8F60220CFAAE900CC203D /* CallWraperBase.h */,
+				122A55DB20D275A100D0EA42 /* TabCall */,
+				12A8F60320CFAAE900CC203D /* AudioFactory */,
+				12A8F5F220CFAAE900CC203D /* CallWraper */,
+				12A8F5FB20CFAAE900CC203D /* Dtmf */,
+				12A8F5EA20CFAAE900CC203D /* Udp */,
+				12A8F5DF20CFAA4600CC203D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		12A8F5DF20CFAA4600CC203D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12A8F5DE20CFAA4600CC203D /* libwebrtcosx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12A8F5EA20CFAAE900CC203D /* Udp */ = {
+			isa = PBXGroup;
+			children = (
+				12A8F5EB20CFAAE900CC203D /* TransportBase.h */,
+				12A8F5EC20CFAAE900CC203D /* TransportFactory.cpp */,
+				12A8F5ED20CFAAE900CC203D /* TransportFactory.h */,
+				12A8F5EE20CFAAE900CC203D /* UdpTransportProxy.cpp */,
+				12A8F5EF20CFAAE900CC203D /* UdpTransportProxy.h */,
+				12A8F5F020CFAAE900CC203D /* WebrtcUdpTransport.cpp */,
+				12A8F5F120CFAAE900CC203D /* WebrtcUdpTransport.h */,
+			);
+			path = Udp;
+			sourceTree = "<group>";
+		};
+		12A8F5F220CFAAE900CC203D /* CallWraper */ = {
+			isa = PBXGroup;
+			children = (
+				12A8F62220CFB90000CC203D /* CallWraperPlatformOsx.mm */,
+				12A8F5F320CFAAE900CC203D /* CallWraper.cpp */,
+				12A8F5F420CFAAE900CC203D /* CallWraper.h */,
+				12A8F5F520CFAAE900CC203D /* CallWraperFactory.cpp */,
+				12A8F5F620CFAAE900CC203D /* CallWraperFactory.h */,
+				12A8F5F720CFAAE900CC203D /* CallWraperPlatform.h */,
+				12A8F5F920CFAAE900CC203D /* DetectCallWraper.cpp */,
+				12A8F5FA20CFAAE900CC203D /* DetectCallWraper.h */,
+			);
+			path = CallWraper;
+			sourceTree = "<group>";
+		};
+		12A8F5FB20CFAAE900CC203D /* Dtmf */ = {
+			isa = PBXGroup;
+			children = (
+				12A8F5FC20CFAAE900CC203D /* dtmf_inband.cc */,
+				12A8F5FD20CFAAE900CC203D /* dtmf_inband.h */,
+				12A8F5FE20CFAAE900CC203D /* dtmf_inband_process.cc */,
+				12A8F5FF20CFAAE900CC203D /* dtmf_inband_process.h */,
+				12A8F60020CFAAE900CC203D /* dtmf_inband_queue.cc */,
+				12A8F60120CFAAE900CC203D /* dtmf_inband_queue.h */,
+			);
+			path = Dtmf;
+			sourceTree = "<group>";
+		};
+		12A8F60320CFAAE900CC203D /* AudioFactory */ = {
+			isa = PBXGroup;
+			children = (
+				12A8F60420CFAAE900CC203D /* ZAudioDecoderFactory.cpp */,
+				12A8F60520CFAAE900CC203D /* ZAudioDecoderFactory.h */,
+				12A8F60620CFAAE900CC203D /* ZAudioEncoderFactory.cpp */,
+				12A8F60720CFAAE900CC203D /* ZAudioEncoderFactory.h */,
+			);
+			path = AudioFactory;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		12A8F5DC20CFAA4600CC203D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12A8F61F20CFAAE900CC203D /* ZAudioDecoderFactory.h in Headers */,
+				12C7A10720D359F900C117B0 /* TabAudioDevice.h in Headers */,
+				12C7A10B20D3641D00C117B0 /* TabCapturer.h in Headers */,
+				12A8F61220CFAAE900CC203D /* CallWraperFactory.h in Headers */,
+				12A8F60820CFAAE900CC203D /* TransportBase.h in Headers */,
+				122A55DF20D275A100D0EA42 /* TabCallWraper.h in Headers */,
+				12A8F60A20CFAAE900CC203D /* TransportFactory.h in Headers */,
+				12C94DD820F59CEE00CE9F4A /* WavReader.h in Headers */,
+				12A8F61020CFAAE900CC203D /* CallWraper.h in Headers */,
+				12A8F61C20CFAAE900CC203D /* dtmf_inband_queue.h in Headers */,
+				12A8F62120CFAAE900CC203D /* ZAudioEncoderFactory.h in Headers */,
+				12A8F60C20CFAAE900CC203D /* UdpTransportProxy.h in Headers */,
+				12A8F61D20CFAAE900CC203D /* CallWraperBase.h in Headers */,
+				12A8F60E20CFAAE900CC203D /* WebrtcUdpTransport.h in Headers */,
+				12A8F61820CFAAE900CC203D /* dtmf_inband.h in Headers */,
+				12A8F61A20CFAAE900CC203D /* dtmf_inband_process.h in Headers */,
+				12A8F61620CFAAE900CC203D /* DetectCallWraper.h in Headers */,
+				12AB324320D8A3CA00CC2B4B /* TabUdpTransport.h in Headers */,
+				12A8F61320CFAAE900CC203D /* CallWraperPlatform.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		12A8F5DD20CFAA4600CC203D /* webrtcosx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12A8F5E720CFAA4700CC203D /* Build configuration list for PBXNativeTarget "webrtcosx" */;
+			buildPhases = (
+				12A8F5DA20CFAA4600CC203D /* Sources */,
+				12A8F5DB20CFAA4600CC203D /* Frameworks */,
+				12A8F5DC20CFAA4600CC203D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = webrtcosx;
+			productName = webrtcosx;
+			productReference = 12A8F5DE20CFAA4600CC203D /* libwebrtcosx.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		12A8F5D620CFAA4600CC203D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = infobird;
+				TargetAttributes = {
+					12A8F5DD20CFAA4600CC203D = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = 12A8F5D920CFAA4600CC203D /* Build configuration list for PBXProject "webrtcosx" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 12A8F5D520CFAA4600CC203D;
+			productRefGroup = 12A8F5DF20CFAA4600CC203D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12A8F5DD20CFAA4600CC203D /* webrtcosx */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12A8F5DA20CFAA4600CC203D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12C94DD720F59CEE00CE9F4A /* WavReader.cpp in Sources */,
+				12A8F62320CFB90000CC203D /* CallWraperPlatformOsx.mm in Sources */,
+				12AB324420D8A3CA00CC2B4B /* TabUdpTransport.cpp in Sources */,
+				12A8F61B20CFAAE900CC203D /* dtmf_inband_queue.cc in Sources */,
+				12C7A10620D359F900C117B0 /* TabAudioDevice.cpp in Sources */,
+				12A8F62020CFAAE900CC203D /* ZAudioEncoderFactory.cpp in Sources */,
+				12A8F61720CFAAE900CC203D /* dtmf_inband.cc in Sources */,
+				12A8F60F20CFAAE900CC203D /* CallWraper.cpp in Sources */,
+				12A8F61920CFAAE900CC203D /* dtmf_inband_process.cc in Sources */,
+				122A55DE20D275A100D0EA42 /* TabCallWraper.cpp in Sources */,
+				12A8F61520CFAAE900CC203D /* DetectCallWraper.cpp in Sources */,
+				12A8F60B20CFAAE900CC203D /* UdpTransportProxy.cpp in Sources */,
+				12A8F61120CFAAE900CC203D /* CallWraperFactory.cpp in Sources */,
+				12A8F60920CFAAE900CC203D /* TransportFactory.cpp in Sources */,
+				12A8F60D20CFAAE900CC203D /* WebrtcUdpTransport.cpp in Sources */,
+				12A8F61E20CFAAE900CC203D /* ZAudioDecoderFactory.cpp in Sources */,
+				12C7A10A20D3641D00C117B0 /* TabCapturer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		12A8F5E520CFAA4700CC203D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		12A8F5E620CFAA4700CC203D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		12A8F5E820CFAA4700CC203D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8EKKZEF9N7;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					WEBRTC_MAC,
+					WEBRTC_POSIX,
+					HAS_TABCALL,
+				);
+				HEADER_SEARCH_PATHS = (
+					../../src/,
+					../../src/sdk/objc/Framework/Headers,
+					../../src/sdk/objc/Framework/Classes/PeerConnection,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		12A8F5E920CFAA4700CC203D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8EKKZEF9N7;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					WEBRTC_MAC,
+					WEBRTC_POSIX,
+					HAS_TABCALL,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "";
+				HEADER_SEARCH_PATHS = (
+					../../src/,
+					../../src/sdk/objc/Framework/Headers,
+					../../src/sdk/objc/Framework/Classes/PeerConnection,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12A8F5D920CFAA4600CC203D /* Build configuration list for PBXProject "webrtcosx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12A8F5E520CFAA4700CC203D /* Debug */,
+				12A8F5E620CFAA4700CC203D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12A8F5E720CFAA4700CC203D /* Build configuration list for PBXNativeTarget "webrtcosx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12A8F5E820CFAA4700CC203D /* Debug */,
+				12A8F5E920CFAA4700CC203D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 12A8F5D620CFAA4600CC203D /* Project object */;
+}

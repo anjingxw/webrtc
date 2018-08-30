@@ -23,9 +23,13 @@
 		12A60FEC2089906200A1F7F3 /* sigcheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A60FE32089906200A1F7F3 /* sigcheck.cpp */; };
 		12A60FED2089906200A1F7F3 /* signature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A60FE52089906200A1F7F3 /* signature.cpp */; };
 		12A60FEE2089906200A1F7F3 /* tls_signature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A60FE62089906200A1F7F3 /* tls_signature.cpp */; };
-		12A7367D20590CEC00AB43A0 /* dtmf_inband_process.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12A7367B20590CEC00AB43A0 /* dtmf_inband_process.cc */; };
-		12B33ABB2057B26500410D83 /* dtmf_inband.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12B33AB92057B26500410D83 /* dtmf_inband.cc */; };
-		12B33ABC2057B26500410D83 /* dtmf_inband_queue.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12B33ABA2057B26500410D83 /* dtmf_inband_queue.cc */; };
+		12A7367D20590CEC00AB43A0 /* dtmf_inband_process.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12A7367B20590CEC00AB43A0 /* dtmf_inband_process.cc */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12B33ABB2057B26500410D83 /* dtmf_inband.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12B33AB92057B26500410D83 /* dtmf_inband.cc */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12B33ABC2057B26500410D83 /* dtmf_inband_queue.cc in Sources */ = {isa = PBXBuildFile; fileRef = 12B33ABA2057B26500410D83 /* dtmf_inband_queue.cc */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12BE95D120ECB38A00EC14F6 /* TabAudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12BE95C920ECB38A00EC14F6 /* TabAudioDevice.cpp */; };
+		12BE95D220ECB38A00EC14F6 /* TabCallWraper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12BE95CB20ECB38A00EC14F6 /* TabCallWraper.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12BE95D320ECB38A00EC14F6 /* TabCapturer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12BE95CD20ECB38A00EC14F6 /* TabCapturer.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12BE95D420ECB38A00EC14F6 /* TabUdpTransport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12BE95CF20ECB38A00EC14F6 /* TabUdpTransport.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +82,14 @@
 		12B33AB82057B26500410D83 /* dtmf_inband.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dtmf_inband.h; path = Dtmf/dtmf_inband.h; sourceTree = "<group>"; };
 		12B33AB92057B26500410D83 /* dtmf_inband.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dtmf_inband.cc; path = Dtmf/dtmf_inband.cc; sourceTree = "<group>"; };
 		12B33ABA2057B26500410D83 /* dtmf_inband_queue.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dtmf_inband_queue.cc; path = Dtmf/dtmf_inband_queue.cc; sourceTree = "<group>"; };
+		12BE95C920ECB38A00EC14F6 /* TabAudioDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabAudioDevice.cpp; sourceTree = "<group>"; };
+		12BE95CA20ECB38A00EC14F6 /* TabAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabAudioDevice.h; sourceTree = "<group>"; };
+		12BE95CB20ECB38A00EC14F6 /* TabCallWraper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabCallWraper.cpp; sourceTree = "<group>"; };
+		12BE95CC20ECB38A00EC14F6 /* TabCallWraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabCallWraper.h; sourceTree = "<group>"; };
+		12BE95CD20ECB38A00EC14F6 /* TabCapturer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabCapturer.cpp; sourceTree = "<group>"; };
+		12BE95CE20ECB38A00EC14F6 /* TabCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabCapturer.h; sourceTree = "<group>"; };
+		12BE95CF20ECB38A00EC14F6 /* TabUdpTransport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabUdpTransport.cpp; sourceTree = "<group>"; };
+		12BE95D020ECB38A00EC14F6 /* TabUdpTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabUdpTransport.h; sourceTree = "<group>"; };
 		12C84CA6207320BB00EAA721 /* CallWraperBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallWraperBase.h; sourceTree = "<group>"; };
 		12E08ED42050E1EF00EB85DD /* libwebrtcwraper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwebrtcwraper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -181,10 +193,26 @@
 			name = Dtmf;
 			sourceTree = "<group>";
 		};
+		12BE95C820ECB38A00EC14F6 /* TabCall */ = {
+			isa = PBXGroup;
+			children = (
+				12BE95C920ECB38A00EC14F6 /* TabAudioDevice.cpp */,
+				12BE95CA20ECB38A00EC14F6 /* TabAudioDevice.h */,
+				12BE95CB20ECB38A00EC14F6 /* TabCallWraper.cpp */,
+				12BE95CC20ECB38A00EC14F6 /* TabCallWraper.h */,
+				12BE95CD20ECB38A00EC14F6 /* TabCapturer.cpp */,
+				12BE95CE20ECB38A00EC14F6 /* TabCapturer.h */,
+				12BE95CF20ECB38A00EC14F6 /* TabUdpTransport.cpp */,
+				12BE95D020ECB38A00EC14F6 /* TabUdpTransport.h */,
+			);
+			path = TabCall;
+			sourceTree = "<group>";
+		};
 		12E08ECB2050E1EF00EB85DD = {
 			isa = PBXGroup;
 			children = (
 				12C84CA6207320BB00EAA721 /* CallWraperBase.h */,
+				12BE95C820ECB38A00EC14F6 /* TabCall */,
 				12B33AB62057B24700410D83 /* Dtmf */,
 				12A60F832089906100A1F7F3 /* GenSig */,
 				12222E242050E28D007926FF /* AudioFactory */,
@@ -261,6 +289,7 @@
 			files = (
 				12A60FEC2089906200A1F7F3 /* sigcheck.cpp in Sources */,
 				12A60FE82089906200A1F7F3 /* base64_url.c in Sources */,
+				12BE95D220ECB38A00EC14F6 /* TabCallWraper.cpp in Sources */,
 				12A7367D20590CEC00AB43A0 /* dtmf_inband_process.cc in Sources */,
 				12222E3D2050E28D007926FF /* CallWraper.cpp in Sources */,
 				12A60FEB2089906200A1F7F3 /* multi_thread.cpp in Sources */,
@@ -268,12 +297,15 @@
 				12222E3A2050E28D007926FF /* TransportFactory.cpp in Sources */,
 				12222E382050E28D007926FF /* ZAudioDecoderFactory.cpp in Sources */,
 				12A60FEA2089906200A1F7F3 /* infobird_sig.mm in Sources */,
+				12BE95D420ECB38A00EC14F6 /* TabUdpTransport.cpp in Sources */,
 				12866DF220512F260064DF05 /* DetectCallWraper.cpp in Sources */,
 				12A60FEE2089906200A1F7F3 /* tls_signature.cpp in Sources */,
 				12222E3E2050E28D007926FF /* CallWraperFactory.cpp in Sources */,
+				12BE95D120ECB38A00EC14F6 /* TabAudioDevice.cpp in Sources */,
 				12222E3B2050E28D007926FF /* UdpTransportProxy.cpp in Sources */,
 				12222E392050E28D007926FF /* ZAudioEncoderFactory.cpp in Sources */,
 				12B33ABB2057B26500410D83 /* dtmf_inband.cc in Sources */,
+				12BE95D320ECB38A00EC14F6 /* TabCapturer.cpp in Sources */,
 				12A60FE72089906200A1F7F3 /* base64.c in Sources */,
 				12A60FED2089906200A1F7F3 /* signature.cpp in Sources */,
 				12222E3F2050E28D007926FF /* CallWraperPlatform.mm in Sources */,

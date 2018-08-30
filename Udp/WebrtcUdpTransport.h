@@ -44,8 +44,9 @@ private:
     bool infobirdTransport_;
     int  audioPlayload_;
     int  seqTemp_;
-    size_t  PreSendProcess(bool isRtp, uint8_t* rtpData, size_t rtpDataLen, uint8_t*& sendData, size_t& sendDataLen);
-    size_t  PreRecvProcess(bool isRtp, int payloadType, uint8_t* recvData, size_t recvDataLen, uint8_t* rtpData, size_t& rtpDataLen, int& seq);
+    static size_t  PreRecvProcess(bool isRtp, int payloadType, uint8_t* recvData, size_t recvDataLen, uint8_t* rtpData, size_t& rtpDataLen, int& seq);
+public:
+    static size_t  PreSendProcess(bool isRtp, uint8_t* rtpData, size_t rtpDataLen, uint8_t*& sendData, size_t& sendDataLen);
 private:
     rtc::Thread* work_thread_;
     webrtc::PacketReceiver* receive_;

@@ -119,6 +119,9 @@ void CallWraper::SetVideoRenderView(void* view){
 void CallWraper::Start(){
      work_thread_->Invoke<void>(RTC_FROM_HERE, rtc::Bind(&CallWraper::__Start, this));
      work_thread_->Invoke<void>(RTC_FROM_HERE, rtc::Bind(&CallWraper::__SignalChannelNetworkState, this));
+#ifdef HAS_TABCALL
+     StartTabCall();
+#endif
 }
 
 void CallWraper::StartOnlySend(){
@@ -148,6 +151,7 @@ void CallWraper::__CreateCallAndAudioDevice(){
     send_audio_device_ = webrtc::AudioDeviceModule::Create(webrtc::AudioDeviceModule::kPlatformDefaultAudio);
 
     dtmfDtmfInbandProcess_ = new DtmfInbandProcess;
+    dtmfDtmfInbandProcess_->Set(nullptr);
     std::unique_ptr<webrtc::CustomProcessing>  dtmfInbandProcess(dtmfDtmfInbandProcess_);
     apm_ = webrtc::AudioProcessingBuilder().SetCapturePostProcessing(std::move(dtmfInbandProcess)).Create();
     webrtc::adm_helpers::Init(send_audio_device_);
@@ -288,6 +292,7 @@ void CallWraper::__CreateVideoStreams(){
 void CallWraper::__CreateAudioStreams(){
     audio_send_stream_ = call_->CreateAudioSendStream(audio_send_config_);
     audio_receive_stream_ = call_->CreateAudioReceiveStream(audio_receive_config_);
+        audio_receive_stream_->SetSink(this);
 }
 
 void CallWraper::__Start(){
@@ -379,12 +384,20 @@ void CallWraper::__Finish_W(){
     CallWraperPlatform::RestCapturer();
     send_audio_device_.release();
     dtmfDtmfInbandProcess_ = NULL;
+#ifdef HAS_TABCALL
+    tabCall_.reset();
+#endif
     call_.reset();
 }
 
 int CallWraper::__GetPayload(){
     if (rtc::ascicmp(audio_codec_plname_.c_str(), "g729") == 0) {
         return 18;
+    }else if(rtc::ascicmp(audio_codec_plname_.c_str(), "g711") == 0){
+        return 8;
+    }
+    else if(rtc::ascicmp(audio_codec_plname_.c_str(), "ilbc") == 0){
+        return 102;
     }
     return 103;
 }
@@ -392,8 +405,12 @@ int CallWraper::__GetPayload(){
 webrtc::SdpAudioFormat CallWraper::__GetSdpAudioFormat(){
     if (rtc::ascicmp(audio_codec_plname_.c_str(), "g729") == 0) {
         return {"g729", 8000, 1};
+    }else if(rtc::ascicmp(audio_codec_plname_.c_str(), "g711") == 0){
+        return {"PCMA", 8000, 1, {{"ptime", "60"}}};
     }
-//    __android_log_print(ANDROID_LOG_ERROR, "MicroMsg***8", "audio_codec_plname_ %s %s", audio_codec_plname_.c_str(), "g729");
+    else if(rtc::ascicmp(audio_codec_plname_.c_str(), "ilbc") == 0){
+        return {"ilbc", 8000, 1};
+    }
     return {"isac", 16000, 1};
 }
 
@@ -459,4 +476,89 @@ void CallWraper::OnDiscardedFrame(){
         renderer_->OnDiscardedFrame();
     }
 }
+//const char* ip, uint16_t port
+void CallWraper::OnData(const webrtc::AudioSinkInterface::Data& audio){
+#ifdef HAS_TABCALL
+    if(tabCall_ != nullptr && tabCall_->sink() != nullptr){
+        tabCall_->sink()->OnData(audio);
+    }
+#endif
+}
 
+#ifdef HAS_TABCALL
+void CallWraper::StartTabCall(){
+    if (tabCall_ != nullptr) {
+        return;
+    }
+    tabCall_.reset(new TabCallWraper(work_thread_, event_log_, encoder_factory_, false));
+    tabCall_->CreateCallAndAudioDevice();
+    dtmfDtmfInbandProcess_->Set(tabCall_->getTabCapturer());
+    tabCall_->StartOnlySend();
+}
+
+bool CallWraper::AddTabToOther(const char* ip, uint16_t port){
+    StartTabCall();
+    TabAudioUdpTransport* transport  = tabCall_->transport();
+    return  transport->AddRemoteIPHostPort(ip, port);
+}
+
+bool CallWraper::RemoveTabToOther(const char* ip, uint16_t port){
+    StartTabCall();
+    TabAudioUdpTransport* transport  = tabCall_->transport();
+    if(ip == NULL || port == 0){
+        transport->ClearRemoteIPHostPort();
+        return true;
+    }
+    
+    transport->DeleteRemoteIPHostPort(ip, port);
+    return true;
+}
+
+
+bool CallWraper::PlayWav(const char* file_path){
+    if(dtmfDtmfInbandProcess_){
+        return dtmfDtmfInbandProcess_->PlayWav(file_path);
+    }
+    return  false;
+}
+
+bool CallWraper::StopPlayWav(){
+    if(dtmfDtmfInbandProcess_){
+        return dtmfDtmfInbandProcess_->StopPlayWav();
+    }
+    return true;
+}
+
+bool CallWraper::Record2File(const char* local, const char* net,  const char* mix){
+    StartTabCall();
+    TabCapturer * cap = tabCall_->getTabCapturer();
+    if (cap) {
+        if (!mix) {
+            cap->RecordMixToFile(mix);
+        }
+        if (!local) {
+            cap->RecordSelfToFile(local);
+        }
+    }
+    if (!net) {
+        ReceiveSource* source = tabCall_->receiveSource();
+        if (source) {
+            source->RecordNet(net);
+        }
+    }
+    return true;
+}
+
+bool CallWraper::StopRecord2File(){
+    StartTabCall();
+    TabCapturer * cap = tabCall_->getTabCapturer();
+    if (cap) {
+        cap->EndRecord();
+    }
+    ReceiveSource* source = tabCall_->receiveSource();
+    if (source) {
+        source->RecordNet("");
+    }
+    return true;
+}
+#endif
