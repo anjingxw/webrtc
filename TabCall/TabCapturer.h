@@ -14,7 +14,7 @@
 #include "api/call/audio_sink.h"
 #include "api/audio/audio_mixer.h"
 #include "modules/audio_processing/audio_buffer.h"
-#include "dtmf_inband_process.h"
+#include "Dtmf/dtmf_inband_process.h"
 #include "common_audio/wav_file.h"
 #include "common_audio/resampler/include/push_resampler.h"
 

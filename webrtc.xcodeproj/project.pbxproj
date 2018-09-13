@@ -62,6 +62,7 @@
 		12222E352050E28D007926FF /* CallWraperFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallWraperFactory.h; sourceTree = "<group>"; };
 		12222E362050E28D007926FF /* CallWraperPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallWraperPlatform.h; sourceTree = "<group>"; };
 		12222E372050E28D007926FF /* CallWraperPlatform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CallWraperPlatform.mm; sourceTree = "<group>"; };
+		127AF9B7214A428000DB1D5F /* DetectCallWraperBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectCallWraperBase.h; sourceTree = "<group>"; };
 		12866DF020512F260064DF05 /* DetectCallWraper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DetectCallWraper.cpp; sourceTree = "<group>"; };
 		12866DF120512F260064DF05 /* DetectCallWraper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectCallWraper.h; sourceTree = "<group>"; };
 		12A60F852089906100A1F7F3 /* infobird_sig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infobird_sig.h; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		12E08ECB2050E1EF00EB85DD = {
 			isa = PBXGroup;
 			children = (
+				127AF9B7214A428000DB1D5F /* DetectCallWraperBase.h */,
 				12C84CA6207320BB00EAA721 /* CallWraperBase.h */,
 				12BE95C820ECB38A00EC14F6 /* TabCall */,
 				12B33AB62057B24700410D83 /* Dtmf */,
@@ -348,6 +350,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -404,6 +407,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -446,6 +450,7 @@
 					"$(PROJECT_DIR)/libs",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;

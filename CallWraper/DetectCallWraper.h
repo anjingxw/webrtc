@@ -16,24 +16,20 @@
 #include "rtc_base/thread.h"
 #include "api/call/transport.h"
 #include "logging/rtc_event_log/rtc_event_log.h"
+#include "DetectCallWraperBase.h"
 
-class DetectTransport{
-public:
-    virtual bool SendG711A(const uint8_t* packet,  size_t length) = 0;
-};
-
-class DetectCallWraper: public webrtc::Transport {
+class DetectCallWraper: public webrtc::Transport, public DetectCallWraperBase {
 public:
     DetectCallWraper(rtc::Thread* work_thread, webrtc::RtcEventLog* event_log,
                rtc::scoped_refptr<webrtc::AudioEncoderFactory> encoder_factory);
     ~DetectCallWraper();
     
-    void CreateCallAndAudioDevice();
-    void Start();
-    void Stop();
+    void CreateCallAndAudioDevice() override;
+    void Start() override;
+    void Stop() override;
     
 public:
-    void SetDetectTransport(DetectTransport* transport);
+    void SetDetectTransport(DetectTransport* transport) override;
 public:
     bool SendRtp(const uint8_t* packet,  size_t length, const webrtc::PacketOptions& options) override;
     bool SendRtcp(const uint8_t* packet, size_t length) override;

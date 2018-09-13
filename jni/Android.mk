@@ -2,7 +2,7 @@ LOCAL_PATH :=$(call my-dir)
 
 include $(CLEAR_VARS)
 
-WEBRTC_LIBS_PATH := ../lib2018
+WEBRTC_LIBS_PATH := ../../../build_android_libs/lib2018
 
 
 LOCAL_MODULE := webrtc

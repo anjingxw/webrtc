@@ -65,6 +65,10 @@ DetectCallWraper* CallWraperFactory::PCreateDetectCallWraper(){
     return  new DetectCallWraper(work_thread_, event_log_.get(), encoder_factory_);
 }
 
+DetectCallWraperBase *GetDetectCallWraperBase(){
+    return CallWraperFactory::Instance()->PCreateDetectCallWraper();
+}
+
 CallWraperBase *GetCallWraperBase(bool ipv6){
     return CallWraperFactory::Instance()->PCreateCallWraper(ipv6);
 }
