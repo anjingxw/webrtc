@@ -19,6 +19,7 @@ public:
 
 class CallWraperBase {
 public:
+    virtual void Loop() = 0;
     virtual void Config(bool only_audio, const char* audio_codec_plname, bool call_out = false) = 0;
     virtual void CreateCallAndAudioDevice() = 0;
     virtual void SetVideoRenderView(void* view) = 0;// extend id<RTCVideoRenderer>
@@ -48,5 +49,7 @@ public:
 
 extern "C" __attribute__((visibility("default"))) CallWraperBase *GetCallWraperBase(bool ipv6);
 extern "C" __attribute__((visibility("default"))) void SetCallWraperPlatformView(void* view);
+
+extern "C" __attribute__((visibility("default"))) void InitLog(const char* path);
 
 #endif /* CallWraperBase_h */

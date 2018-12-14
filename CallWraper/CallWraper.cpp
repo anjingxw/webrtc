@@ -25,6 +25,7 @@
 #include "WebrtcUdpTransport.h"
 #include "dtmf_inband_process.h"
 #include "rtc_base/logging.h"
+#include "CallEncoderStreamFactory.hpp"
 //#include <android/log.h>
 
 #ifdef WEBRTC_IOS
@@ -45,6 +46,8 @@ const uint32_t kReceiverLocalAudioSsrc = kAudioSendSsrc;
 const uint8_t  kVideoSendPayloadType = 125;
 const uint32_t kReceiverLocalVideoSsrc = 0x123456;
 const uint32_t kVideoSendSsrc = 0x654321;
+const uint8_t  kFlexfecPayloadType = 120;
+const uint32_t kFlexfecSendSsrc = 0xBADBEEF;
 
 CallWraper::CallWraper(rtc::Thread* work_thread, webrtc::RtcEventLog* event_log,
                        rtc::scoped_refptr<webrtc::AudioDecoderFactory> decoder_factory,
@@ -52,6 +55,7 @@ CallWraper::CallWraper(rtc::Thread* work_thread, webrtc::RtcEventLog* event_log,
                        bool ipv6):
 only_audio_(false),
 audio_codec_plname_("isac"),
+loop_(false),
 work_thread_(work_thread),
 event_log_(event_log),
 send_audio_device_(nullptr),
@@ -59,6 +63,7 @@ video_send_config_(nullptr),
 video_send_stream_(nullptr),
 video_receive_config_(nullptr),
 video_receive_stream_(nullptr),
+video_receive_fec_stream_(nullptr),
 audio_send_config_(nullptr),
 audio_send_stream_(nullptr),
 audio_receive_stream_(nullptr),
@@ -67,7 +72,8 @@ decoder_factory_(decoder_factory),
 encoder_factory_(encoder_factory),
 audioTransport_(new WebrtcUdpTransport(WebrtcUdpTransport::kAudio, "auido", ipv6)),
 videoTransport_(only_audio_?nullptr:new WebrtcUdpTransport(WebrtcUdpTransport::kVideo, "video", ipv6)),
-callWraperPlatform_(new CallWraperPlatform(only_audio_)){
+callWraperPlatform_(new CallWraperPlatform(only_audio_)),
+flex_fec_(false){
     renderer_ = NULL;
     //for test
 //    rtc::SocketAddress addr = audioTransport_->GetLocalAddress();
@@ -187,17 +193,18 @@ void CallWraper::__CreateCallAndAudioDevice(){
 void CallWraper::__CreateVideoEncoderConfig(){
     cricket::VideoCodec codec("H264");
     //cricket::VideoCodec codec("VP8");
-    video_encoder_config_.min_transmit_bitrate_bps = 50*1000;//250k
-    video_encoder_config_.max_bitrate_bps = 500*1000; //1000k
+    video_encoder_config_.min_transmit_bitrate_bps = 200*1000; //250*1000;//250k
+    video_encoder_config_.max_bitrate_bps = 600*1000;//1000*1000;//; //1000k
     video_encoder_config_.content_type = webrtc::VideoEncoderConfig::ContentType::kRealtimeVideo;
     video_encoder_config_.number_of_streams = 1;
-    video_encoder_config_.video_stream_factory = new rtc::RefCountedObject<cricket::EncoderStreamFactory>(codec.name, 56, 60, false, false);
+    video_encoder_config_.video_stream_factory = new rtc::RefCountedObject<CallEncoderStreamFactory>(codec.name);//new rtc::RefCountedObject<cricket::EncoderStreamFactory>(codec.name, 56, 60, false, false);
 //    webrtc::VideoCodecVP8 v8Setting = webrtc::VideoEncoder::GetDefaultVp8Settings();
 //    video_encoder_config_.encoder_specific_settings =  new rtc::RefCountedObject<webrtc::VideoEncoderConfig::Vp8EncoderSpecificSettings>(v8Setting);
     
     webrtc::VideoCodecH264 h264_settings =  webrtc::VideoEncoder::GetDefaultH264Settings();
     h264_settings.frameDroppingOn = false;
-    h264_settings.keyFrameInterval = 1000;
+    h264_settings.keyFrameInterval = 50;
+    h264_settings.profile = webrtc::H264::kProfileBaseline;//kProfileMain;//kProfileConstrainedBaseline;
     video_encoder_config_.encoder_specific_settings =  new rtc::RefCountedObject<webrtc::VideoEncoderConfig::H264EncoderSpecificSettings>(h264_settings);
 }
 
@@ -222,6 +229,12 @@ void CallWraper::__CreateSendConfig(){
         video_send_config_.encoder_settings.payload_name = "H264";
         video_send_config_.encoder_settings.payload_type = kVideoSendPayloadType;
         video_send_config_.rtp.ssrcs.push_back(call_out_?kVideoSendSsrc:kReceiverLocalVideoSsrc);
+        video_send_config_.rtp.nack.rtp_history_ms = 1000;
+        if (flex_fec_) {
+            video_send_config_.rtp.flexfec.payload_type = kFlexfecPayloadType;
+            video_send_config_.rtp.flexfec.protected_media_ssrcs = video_send_config_.rtp.ssrcs;
+            video_send_config_.rtp.flexfec.ssrc = kFlexfecSendSsrc;
+        }
     }
 }
 
@@ -237,13 +250,21 @@ void CallWraper::__CreateReceiveConfig(){
         video_receive_config_ = webrtc::VideoReceiveStream::Config(videoTransport_.get());
         video_receive_config_.rtp.remb = false;
         video_receive_config_.rtp.transport_cc = true;
-        video_receive_config_.rtp.local_ssrc = !call_out_?kVideoSendSsrc:kReceiverLocalVideoSsrc;
-        video_receive_config_.rtp.remote_ssrc = video_send_config_.rtp.ssrcs[0];
+        video_receive_config_.rtp.local_ssrc = video_send_config_.rtp.ssrcs[0];
+        //video_receive_config_.rtp.nack.rtp_history_ms = 1000;
+        video_receive_config_.rtp.protected_by_flexfec = flex_fec_;
+        video_receive_config_.rtp.remote_ssrc = !call_out_?kVideoSendSsrc:kReceiverLocalVideoSsrc;
         for (const webrtc::RtpExtension& extension : video_send_config_.rtp.extensions)
             video_receive_config_.rtp.extensions.push_back(extension);
         
+        if (loop_) {
+             video_receive_config_.rtp.local_ssrc = !call_out_?kVideoSendSsrc:kReceiverLocalVideoSsrc;
+            video_receive_config_.rtp.remote_ssrc = video_send_config_.rtp.ssrcs[0];
+        }
+        
         video_receive_config_.renderer = this;
-        video_receive_config_.render_delay_ms =  50;
+        video_receive_config_.render_delay_ms =  500;
+        video_receive_config_.target_delay_ms = 100;
         //const webrtc::SdpVideoFormat format("VP8", {});
         const webrtc::SdpVideoFormat format("H264", {});
         video_decoder_ = CallWraperPlatform::CreateVideoDecoder(format);
@@ -284,9 +305,22 @@ void CallWraper::__SignalChannelNetworkStateDown(){
 void CallWraper::__CreateVideoStreams(){
     __CreateVideoEncoderConfig();
     video_send_stream_ = call_->CreateVideoSendStream(video_send_config_.Copy(), video_encoder_config_.Copy());
-    video_send_stream_->SetSource(CallWraperPlatform::source_, webrtc::VideoSendStream::DegradationPreference::kMaintainFramerate);
+    video_send_stream_->SetSource(CallWraperPlatform::source_, webrtc::VideoSendStream::DegradationPreference::kMaintainResolution);
 
     video_receive_stream_ =  call_->CreateVideoReceiveStream(video_receive_config_.Copy());
+
+    if (flex_fec_) {
+        
+        webrtc::FlexfecReceiveStream::Config video_receive_fec_config_(videoTransport_.get());
+        video_receive_fec_config_.payload_type = kFlexfecPayloadType;
+        video_receive_fec_config_.remote_ssrc = kFlexfecSendSsrc;
+        video_receive_fec_config_.protected_media_ssrcs = {video_receive_config_.rtp.remote_ssrc };
+        video_receive_fec_config_.local_ssrc = kReceiverLocalVideoSsrc;
+        for (const webrtc::RtpExtension& extension : video_send_config_.rtp.extensions)
+            video_receive_fec_config_.rtp_header_extensions.push_back(extension);
+        video_receive_fec_stream_ = call_->CreateFlexfecReceiveStream(video_receive_fec_config_);
+        video_receive_stream_->AddSecondarySink(video_receive_fec_stream_);
+    }
 }
 
 void CallWraper::__CreateAudioStreams(){
@@ -297,7 +331,7 @@ void CallWraper::__CreateAudioStreams(){
 
 void CallWraper::__Start(){
     if (video_send_stream_)
-        video_send_stream_->Start();
+       video_send_stream_->Start();
     
     if (video_receive_stream_) {
         video_receive_stream_->Start();
@@ -366,6 +400,10 @@ void CallWraper::__DestroyStreams(){
         call_->DestroyVideoSendStream(video_send_stream_);
     
     if (video_receive_stream_) {
+        if(video_receive_fec_stream_){
+            video_receive_stream_->RemoveSecondarySink(video_receive_fec_stream_);
+            call_->DestroyFlexfecReceiveStream(video_receive_fec_stream_);
+        }
         call_->DestroyVideoReceiveStream(video_receive_stream_);
     }
     
@@ -465,7 +503,7 @@ int CallWraper::GetSoundQuality(){
 }
 
 void CallWraper::OnFrame(const webrtc::VideoFrame& frame){
-    //RTC_LOG(LS_WARNING) << static_cast<void*>(renderer_);
+    //RTC_LOG(LS_WARNING) <<"CallWraper::OnFrame_"<<static_cast<void*>(renderer_);
     if (renderer_) {
         renderer_->OnFrame(frame);
     }

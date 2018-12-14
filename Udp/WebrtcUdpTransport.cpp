@@ -12,6 +12,7 @@
 #include "rtc_base/byteorder.h"
 #include "media/base/rtputils.h"
 #include "modules/rtp_rtcp/include/rtp_header_parser.h"
+#include "../../QTBService/logging/Logging.h"
 
 //#include <android/log.h>
 
@@ -63,9 +64,10 @@ bool WebrtcUdpTransport::SendRtp(const uint8_t* packet, size_t length, const web
         return true;
     }
     
-    if (type_ == kVideo) { //测试
-        printf("send________%d\n", (int)length);
-    }
+//    if (type_ == kVideo) { //测试
+//        printf("send________%d\n", (int)length);
+//        LOG_DEBUG<<"send________"<<length;
+//    }
 //
     transportProxy_->SendDataEx(packet, length);
     return true;
@@ -140,7 +142,8 @@ void WebrtcUdpTransport::OnReadPacket(rtc::CopyOnWriteBuffer* packet,  const rtc
     }
     
     if (type_ == kVideo) { //测试
-        printf("recv________%d\n", (int)packet->size());
+        //printf("recv________%d\n", (int)packet->size());
+        //LOG_DEBUG<<"recv________"<<packet->size();
     }
     
     invoker_.AsyncInvoke<webrtc::PacketReceiver::DeliveryStatus>(RTC_FROM_HERE, work_thread_,                                                       rtc::Bind(&WebrtcUdpTransport::DeliverPacket, this, *packet, packet_time));

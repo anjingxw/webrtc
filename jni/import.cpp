@@ -9,6 +9,7 @@
  */
 
 #include "CallWraperBase.h"
+#include "DetectCallWraperBase.h"
 #include <jni.h>
 extern "C" void
 Java_org_webrtc_Logging_nativeEnableLogToDebugOutput(JNIEnv* jni, jclass jcaller, jint nativeSeverity);
@@ -160,6 +161,7 @@ extern "C" rettype JNIEXPORT JNICALL Java_com_infobird_webrtc_RTC_##name
 
 CIWR(void, noimport)(JNIEnv* env, jclass cls){
     GetCallWraperBase(false);
+    GetDetectCallWraperBase();
     SetCallWraperPlatformView(NULL);
     
     Java_org_webrtc_Logging_nativeEnableLogToDebugOutput(env, cls, 0);

@@ -30,6 +30,7 @@
 		12BE95D220ECB38A00EC14F6 /* TabCallWraper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12BE95CB20ECB38A00EC14F6 /* TabCallWraper.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
 		12BE95D320ECB38A00EC14F6 /* TabCapturer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12BE95CD20ECB38A00EC14F6 /* TabCapturer.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
 		12BE95D420ECB38A00EC14F6 /* TabUdpTransport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12BE95CF20ECB38A00EC14F6 /* TabUdpTransport.cpp */; settings = {COMPILER_FLAGS = "-fno-rtti"; }; };
+		12BF9D69219ACC2000E715CD /* CallEncoderStreamFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12BF9D67219ACC2000E715CD /* CallEncoderStreamFactory.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,8 +92,11 @@
 		12BE95CE20ECB38A00EC14F6 /* TabCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabCapturer.h; sourceTree = "<group>"; };
 		12BE95CF20ECB38A00EC14F6 /* TabUdpTransport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabUdpTransport.cpp; sourceTree = "<group>"; };
 		12BE95D020ECB38A00EC14F6 /* TabUdpTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabUdpTransport.h; sourceTree = "<group>"; };
+		12BF9D67219ACC2000E715CD /* CallEncoderStreamFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CallEncoderStreamFactory.cpp; sourceTree = "<group>"; };
+		12BF9D68219ACC2000E715CD /* CallEncoderStreamFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CallEncoderStreamFactory.hpp; sourceTree = "<group>"; };
 		12C84CA6207320BB00EAA721 /* CallWraperBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallWraperBase.h; sourceTree = "<group>"; };
 		12E08ED42050E1EF00EB85DD /* libwebrtcwraper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwebrtcwraper.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		12F5E907218FDAC2007F29BD /* LogStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogStream.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,8 @@
 				12222E372050E28D007926FF /* CallWraperPlatform.mm */,
 				12866DF020512F260064DF05 /* DetectCallWraper.cpp */,
 				12866DF120512F260064DF05 /* DetectCallWraper.h */,
+				12BF9D67219ACC2000E715CD /* CallEncoderStreamFactory.cpp */,
+				12BF9D68219ACC2000E715CD /* CallEncoderStreamFactory.hpp */,
 			);
 			path = CallWraper;
 			sourceTree = "<group>";
@@ -212,6 +218,7 @@
 		12E08ECB2050E1EF00EB85DD = {
 			isa = PBXGroup;
 			children = (
+				12F5E907218FDAC2007F29BD /* LogStream.h */,
 				127AF9B7214A428000DB1D5F /* DetectCallWraperBase.h */,
 				12C84CA6207320BB00EAA721 /* CallWraperBase.h */,
 				12BE95C820ECB38A00EC14F6 /* TabCall */,
@@ -294,6 +301,7 @@
 				12BE95D220ECB38A00EC14F6 /* TabCallWraper.cpp in Sources */,
 				12A7367D20590CEC00AB43A0 /* dtmf_inband_process.cc in Sources */,
 				12222E3D2050E28D007926FF /* CallWraper.cpp in Sources */,
+				12BF9D69219ACC2000E715CD /* CallEncoderStreamFactory.cpp in Sources */,
 				12A60FEB2089906200A1F7F3 /* multi_thread.cpp in Sources */,
 				12222E3C2050E28D007926FF /* WebrtcUdpTransport.cpp in Sources */,
 				12222E3A2050E28D007926FF /* TransportFactory.cpp in Sources */,
@@ -444,6 +452,7 @@
 					../../src/third_party/jsoncpp/source/include,
 					../webrtc,
 					./GenSig,
+					../,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -476,6 +485,7 @@
 					../../src/third_party/jsoncpp/source/include,
 					../webrtc,
 					./GenSig,
+					../,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

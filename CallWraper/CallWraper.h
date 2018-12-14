@@ -40,6 +40,8 @@ public:
     
     void StartOnlySend() override;
     void StartOnlyRecv() override;
+    
+    void Loop() override  { loop_= true;};
 public:
     webrtc::AudioDeviceModule*  getAudioDeviceModule();
 public:
@@ -61,6 +63,8 @@ private:
     bool only_audio_;
     std::string audio_codec_plname_;
     bool call_out_;
+    bool loop_;
+    bool flex_fec_;
 private:
     rtc::Thread* work_thread_;
     webrtc::RtcEventLog* event_log_;
@@ -76,6 +80,7 @@ private:
     //视频  接收
     webrtc::VideoReceiveStream::Config video_receive_config_;
     webrtc::VideoReceiveStream* video_receive_stream_;
+    webrtc::FlexfecReceiveStream* video_receive_fec_stream_;
     //音频  发送
     webrtc::AudioSendStream::Config audio_send_config_;
     webrtc::AudioSendStream* audio_send_stream_;

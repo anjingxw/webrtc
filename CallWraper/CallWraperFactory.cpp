@@ -9,6 +9,7 @@
 #include "CallWraperFactory.h"
 #include "ZAudioDecoderFactory.h"
 #include "ZAudioEncoderFactory.h"
+#include "LogStream.h"
 
 CallWraperFactory* CallWraperFactory::Instance() {
     RTC_DEFINE_STATIC_LOCAL(CallWraperFactory, ls_callw_factory, ());
@@ -76,3 +77,10 @@ CallWraperBase *GetCallWraperBase(bool ipv6){
 void SetCallWraperPlatformView(void* view_){
     CallWraperPlatform::SetView(view_);
 }
+
+std::unique_ptr<LogStream> LogStream::s_LogStream =  nullptr;
+void InitLog(const char* path){
+    std::string logPath = path;
+    LogStream::InitLog(path);
+}
+
